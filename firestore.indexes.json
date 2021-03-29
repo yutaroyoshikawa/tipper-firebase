@@ -1,0 +1,61 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "performances",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "artist_id",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "finish",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "performances",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "artist_id",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "start",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "performances",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "place_id",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "finish",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "performances",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "start",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "artist_id",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
