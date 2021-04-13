@@ -18,5 +18,6 @@ export const onCreateUser = functions.handler.auth.user.onCreate(
 );
 
 export const mp4ToHls = functions.handler.storage.object.onFinalize((item) =>
+  // eslint-disable-next-line no-console
   console.log(item.bucket)
 );
