@@ -33,7 +33,6 @@ jobs:
         working-directory: ./functions
         run: npm install
       - name: Deploy to Firebase
-        working-directory: /
         uses: w9jds/firebase-action@master
         with:
           args: deploy
