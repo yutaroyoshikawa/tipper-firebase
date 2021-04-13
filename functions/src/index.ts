@@ -16,3 +16,9 @@ export const onCreateUser = functions.handler.auth.user.onCreate(
     });
   }
 );
+
+export const mp4ToHls = functions.handler.storage.bucket.onChange(
+  async (item: any) => {
+    console.log(item);
+  }
+)
