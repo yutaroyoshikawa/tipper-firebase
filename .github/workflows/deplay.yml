@@ -33,6 +33,9 @@ jobs:
       - name: install dependences
         working-directory: ./functions
         run: npm install
+      - name: build functions
+        working-directory: ./functions
+        run: npm run build
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@master
         with:
