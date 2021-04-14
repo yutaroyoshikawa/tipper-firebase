@@ -20,6 +20,7 @@ jobs:
       - name: build functions
         working-directory: ./functions
         run: npm run build
+        
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
@@ -32,9 +33,11 @@ jobs:
       - name: install dependences
         working-directory: ./functions
         run: npm install
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
         with:
-          args: deploy
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+      - name: Deploy Functions
+        run: sh app/deploy/deploy.sh
