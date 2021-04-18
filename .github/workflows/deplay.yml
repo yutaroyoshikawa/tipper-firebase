@@ -42,14 +42,14 @@ jobs:
           name: helloWorld
           runtime: nodejs12
           credentials: ${{ secrets.GCP_SA_KEY }}
-          env_vars: GOOGLE_APPLICATION_CREDENTIALS=`${{ secrets.GCP_SA_KEY }}`
+          env_vars: GOOGLE_APPLICATION_CREDENTIALS='${{ secrets.GCP_SA_KEY }}'
       - name: deploy onCreateUser
         uses: google-github-actions/deploy-cloud-functions@main
         with:
           name: onCreateUser
           runtime: nodejs12
           credentials: ${{ secrets.GCP_SA_KEY }}
-          env_vars: GOOGLE_APPLICATION_CREDENTIALS=`${{ secrets.GCP_SA_KEY }}`
+          env_vars: GOOGLE_APPLICATION_CREDENTIALS='${{ secrets.GCP_SA_KEY }}'
           event_trigger_type: providers/firebase.auth/eventTypes/user.create
           event_trigger_resource: ${{ secrets.GCP_PROJECT_ID }}
       - name: deploy mp4ToHls
@@ -58,6 +58,6 @@ jobs:
           name: mp4ToHls
           runtime: nodejs12
           credentials: ${{ secrets.GCP_SA_KEY }}
-          env_vars: GOOGLE_APPLICATION_CREDENTIALS=`${{ secrets.GCP_SA_KEY }}`
+          env_vars: GOOGLE_APPLICATION_CREDENTIALS='${{ secrets.GCP_SA_KEY }}'
           event_trigger_type: google.storage.object.finalize
           event_trigger_resource: rojects/${{ secrets.GCP_PROJECT_ID }}/buckets/performances/videos
