@@ -47,7 +47,7 @@ jobs:
           source_dir: functions
           runtime: nodejs12
           credentials: ${{ secrets.GCP_SA_KEY }}
-          env_vars_file: env.yaml
+          env_vars_file: functions/env.yaml
       - name: deploy onCreateUser
         uses: google-github-actions/deploy-cloud-functions@main
         with:
@@ -55,7 +55,7 @@ jobs:
           source_dir: functions
           runtime: nodejs12
           credentials: ${{ secrets.GCP_SA_KEY }}
-          env_vars_file: env.yaml
+          env_vars_file: functions/env.yaml
           event_trigger_type: providers/firebase.auth/eventTypes/user.create
           event_trigger_resource: ${{ secrets.GCP_PROJECT_ID }}
       - name: deploy mp4ToHls
@@ -65,6 +65,6 @@ jobs:
           source_dir: functions
           runtime: nodejs12
           credentials: ${{ secrets.GCP_SA_KEY }}
-          env_vars_file: env.yaml
+          env_vars_file: functions/env.yaml
           event_trigger_type: google.storage.object.finalize
           event_trigger_resource: rojects/${{ secrets.GCP_PROJECT_ID }}/buckets/performances/videos
