@@ -1,7 +1,7 @@
 import * as functions from "firebase-functions";
-import {app, initializeApp, credential} from "firebase-admin";
+import {initializeApp, credential} from "firebase-admin";
 
-initializeApp({
+const app = initializeApp({
   credential: credential.applicationDefault(),
 });
 
@@ -14,8 +14,8 @@ export const helloWorld = functions.https.onRequest((request, response) => {
 
 export const onCreateUser = functions.handler.auth.user.onCreate(
     async (user) => {
-      await app().firestore().collection("users").doc(user.uid).create({});
-      await app().auth().setCustomUserClaims(user.uid, {
+      await app.firestore().collection("users").doc(user.uid).create({});
+      await app.auth().setCustomUserClaims(user.uid, {
         userType: "user",
       });
     }
