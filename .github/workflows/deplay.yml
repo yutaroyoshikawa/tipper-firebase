@@ -44,4 +44,4 @@ jobs:
           export_default_credentials: true
       - name: Deploy Functions
         working-directory: ./functions
-        run: sh ./deploy.sh
+        run: npm install　&& sh ./deploy.sh
