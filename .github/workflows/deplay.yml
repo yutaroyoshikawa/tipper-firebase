@@ -39,7 +39,7 @@ jobs:
       - name: gen credentials
         working-directory: ./functions
         run: |
-          echo '${{ secrets.GCP_SA_KEY }}' > credentials.json
+          echo '${{ secrets.FIREBASE_ADMIN_CREDENTIAL }}' > credentials.json
       - name: deploy helloWorld
         uses: google-github-actions/deploy-cloud-functions@main
         with:
