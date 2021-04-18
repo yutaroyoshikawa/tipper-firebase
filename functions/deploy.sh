@@ -16,4 +16,4 @@ gcloud functions deploy mp4ToHls \
 --timeout 540 \
 --source lib \
 --trigger-event google.storage.object.finalize \
---trigger-resource /performances/videos
+--trigger-resource projects/tipper-303209/buckets/performances/videos
