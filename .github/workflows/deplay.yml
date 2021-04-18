@@ -42,17 +42,17 @@ jobs:
           echo 'GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}' > env.yaml
       - name: deploy helloWorld
         uses: google-github-actions/deploy-cloud-functions@main
-        working-directory: ./functions
         with:
           name: helloWorld
+          source_dir: functions
           runtime: nodejs12
           credentials: ${{ secrets.GCP_SA_KEY }}
           env_vars_file: env.yaml
       - name: deploy onCreateUser
         uses: google-github-actions/deploy-cloud-functions@main
-        working-directory: ./functions
         with:
           name: onCreateUser
+          source_dir: functions
           runtime: nodejs12
           credentials: ${{ secrets.GCP_SA_KEY }}
           env_vars_file: env.yaml
@@ -60,9 +60,9 @@ jobs:
           event_trigger_resource: ${{ secrets.GCP_PROJECT_ID }}
       - name: deploy mp4ToHls
         uses: google-github-actions/deploy-cloud-functions@main
-        working-directory: ./functions
         with:
           name: mp4ToHls
+          source_dir: functions
           runtime: nodejs12
           credentials: ${{ secrets.GCP_SA_KEY }}
           env_vars_file: env.yaml
