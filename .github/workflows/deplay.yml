@@ -36,12 +36,28 @@ jobs:
       - name: build functions
         working-directory: ./functions
         run: npm run build
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@master
+      - name: deploy helloWorld
+        uses: google-github-actions/deploy-cloud-functions@main
         with:
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
-          export_default_credentials: true
-      - name: Deploy Functions
-        working-directory: ./functions
-        run: sh ./deploy.sh
+          name: helloWorld
+          runtime: nodejs12
+          credentials: ${{ secrets.GCP_SA_KEY }}
+          env_vars: GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GCP_SA_KEY }}
+      - name: deploy onCreateUser
+        uses: google-github-actions/deploy-cloud-functions@main
+        with:
+          name: onCreateUser
+          runtime: nodejs12
+          credentials: ${{ secrets.GCP_SA_KEY }}
+          env_vars: GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GCP_SA_KEY }}
+          event_trigger_type: providers/firebase.auth/eventTypes/user.create
+          event_trigger_resource: ${{ secrets.GCP_PROJECT_ID }}
+      - name: deploy mp4ToHls
+        uses: google-github-actions/deploy-cloud-functions@main
+        with:
+          name: mp4ToHls
+          runtime: nodejs12
+          credentials: ${{ secrets.GCP_SA_KEY }}
+          env_vars: GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GCP_SA_KEY }}
+          event_trigger_type: google.storage.object.finalize
+          event_trigger_resource: rojects/${{ secrets.GCP_PROJECT_ID }}/buckets/performances/videos
