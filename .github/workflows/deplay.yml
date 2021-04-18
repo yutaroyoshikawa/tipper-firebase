@@ -38,7 +38,8 @@ jobs:
         run: npm run build
       - name: gen credentials
         working-directory: ./functions
-        run: echo 'GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}' > env.yaml
+        run: |
+          echo 'GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}' > env.yaml
       - name: deploy helloWorld
         uses: google-github-actions/deploy-cloud-functions@main
         working-directory: ./functions
