@@ -39,7 +39,7 @@ jobs:
       - name: gen credentials
         working-directory: ./functions
         run: |
-          echo 'GOOGLE_APPLICATION_CREDENTIALS: "${{ secrets.GCP_SA_KEY }}"' > env.yaml
+          echo 'GOOGLE_APPLICATION_CREDENTIALS: `${{ secrets.GCP_SA_KEY }}`' > env.yaml
       - name: deploy helloWorld
         uses: google-github-actions/deploy-cloud-functions@main
         with:
