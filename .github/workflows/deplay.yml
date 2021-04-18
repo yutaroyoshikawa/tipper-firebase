@@ -48,16 +48,6 @@ jobs:
           runtime: nodejs12
           credentials: ${{ secrets.GCP_SA_KEY }}
           env_vars: GOOGLE_APPLICATION_CREDENTIALS=credentials.json,FIREBASE_CONFIG=credentials.json,GCLOUD_PROJECT=${{ secrets.GCP_PROJECT_ID }}
-      - name: deploy mp4ToHls
-        uses: google-github-actions/deploy-cloud-functions@main
-        with:
-          name: mp4ToHls
-          source_dir: functions
-          runtime: nodejs12
-          credentials: ${{ secrets.GCP_SA_KEY }}
-          env_vars: GOOGLE_APPLICATION_CREDENTIALS=credentials.json,FIREBASE_CONFIG=credentials.json,GCLOUD_PROJECT=${{ secrets.GCP_PROJECT_ID }}
-          event_trigger_type: google.storage.object.finalize
-          event_trigger_resource: rojects/${{ secrets.GCP_PROJECT_ID }}/buckets/performances/videos
       - name: deploy onCreateUser
         uses: google-github-actions/deploy-cloud-functions@main
         with:
@@ -68,3 +58,13 @@ jobs:
           env_vars: GOOGLE_APPLICATION_CREDENTIALS=credentials.json,FIREBASE_CONFIG=credentials.json,GCLOUD_PROJECT=${{ secrets.GCP_PROJECT_ID }}
           event_trigger_type: providers/firebase.auth/eventTypes/user.create
           event_trigger_resource: ${{ secrets.GCP_PROJECT_ID }}
+      - name: deploy mp4ToHls
+        uses: google-github-actions/deploy-cloud-functions@main
+        with:
+          name: mp4ToHls
+          source_dir: functions
+          runtime: nodejs12
+          credentials: ${{ secrets.GCP_SA_KEY }}
+          env_vars: GOOGLE_APPLICATION_CREDENTIALS=credentials.json,FIREBASE_CONFIG=credentials.json,GCLOUD_PROJECT=${{ secrets.GCP_PROJECT_ID }}
+          event_trigger_type: google.storage.object.finalize
+          event_trigger_resource: rojects/${{ secrets.GCP_PROJECT_ID }}/buckets/performances/videos
