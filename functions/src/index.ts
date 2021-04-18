@@ -1,5 +1,9 @@
 import * as functions from "firebase-functions";
-import {app} from "firebase-admin";
+import {app, initializeApp, credential} from "firebase-admin";
+
+initializeApp({
+  credential: credential.applicationDefault(),
+});
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
